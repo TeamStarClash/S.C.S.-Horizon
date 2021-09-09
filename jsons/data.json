@@ -1,0 +1,99 @@
+{
+  "testSaveArea": {
+    "var1": 3
+  },
+  "colorRoles": {
+    "#000000": {
+      "hexvalue": "#000000",
+      "snowflake": "abcd"
+    },
+    "#aa00aa": {
+      "hexvalue": "#aa00aa",
+      "snowflake": "abcd"
+    }
+  },
+  "deletedUsers": {
+    "790710595225255956": {
+      "roles": [],
+      "nickname": "Runkle αβ"
+    },
+    "277523960558649344": {
+      "roles": [],
+      "nickname": null
+    }
+  },
+  "serverDataTypes": {
+    "kicked": "The number of times the user has been kicked from the server",
+    "kicks": "The number of times the user has kicked another user (not yet implemented)",
+    "conversationsStarted": "The number of times the user has (attempted) to start a conversation on the server (not yet implemented)",
+    "donutCounter": "The number of times the user has used the donut command"
+  },
+  "serverData": {
+    "352175357387997184": {
+      "name": "Runkle α",
+      "kicked": 0,
+      "kicks": 0,
+      "conversationsStarted": 0,
+      "donutCounter": 10
+    },
+    "790710595225255956": {
+      "name": "Runkle αβ",
+      "kicked": 0,
+      "kicks": 0,
+      "conversationsStarted": 0,
+      "donutCounter": 1
+    },
+    "388802019919527937": {
+      "name": "Runkle β",
+      "kicked": 0,
+      "kicks": 0,
+      "conversationsStarted": 0,
+      "donutCounter": 2
+    },
+    "277523960558649344": {
+      "name": "Kearschner",
+      "kicked": 11,
+      "kicks": 0,
+      "conversationsStarted": 0,
+      "donutCounter": 2
+    },
+    "249605312972062720": {
+      "name": "Hamilton"
+    },
+    "274646899875774466": {
+      "name": "Saliga",
+      "kicked": 0,
+      "kicks": 0,
+      "conversationsStarted": 0,
+      "donutCounter": 11
+    },
+    "413037138557534218": {
+      "name": "Mattson",
+      "kicked": 0,
+      "kicks": 0,
+      "conversationsStarted": 0,
+      "donutCounter": 69
+    },
+    "232985631519670282": {
+      "name": "Quinn",
+      "kicked": 0,
+      "kicks": 0,
+      "conversationsStarted": 0,
+      "donutCounter": 1
+    },
+    "580773186119925800": {
+      "name": "Johnson",
+      "kicked": 0,
+      "kicks": 0,
+      "conversationsStarted": 0,
+      "donutCounter": 1
+    },
+    "263117564014493706": {
+      "name": "Faulkner",
+      "donutCounter": 7
+    },
+    "161598588365963264": {
+      "name": "Brown"
+    }
+  }
+}

@@ -3,14 +3,9 @@ var re = /[0-9a-f]{6}/
 module.exports = {
   name: 'colorme',
   description: 'Color your name',
+  //instructions: 'Type !colorme followed by a hex value. This will change your name to the color chosen. (currently not functional)',
   execute(msg, args, client){
 
-
-    botRolePosition = msg.guild.members.resolve(client.user).roles.highest.position
-    userRolePosition = msg.member.roles.highest.position
-    rolePosition = Math.min(botRolePosition, userRolePosition+1)
-
-    console.log(`botRolePosition is: ${botRolePosition}, userRolePosition is: ${userRolePosition}, and rolePosition is: ${rolePosition}`)
 
     //validate input
     if(!args.length){
@@ -34,10 +29,26 @@ module.exports = {
       msg.channel.send(`Provide a color in hex format, ${msg.author}.`)
       return
     }
+    
+    botRolePosition = msg.guild.members.resolve(client.user).roles.highest.position
+    userRolePosition = msg.member.roles.highest.position
+    rolePosition = Math.min(botRolePosition-1, userRolePosition)
+    //checks first if role already exists
+    if(msg.guild.roles.cache.find(role => role.name === colorcode) && msg.guild.roles.cache.find(role => role.name === colorcode).position === userRolePosition + 1){
+      msg.member.roles.add(msg.guild.roles.cache.find(role => role.name === colorcode))
+      return
+    }
+
     //creates the roll, sets appropriate settings, adds to user. Deletes old roll if not necessary
     msg.guild.roles.create({ data: { name: colorcode, color: colorcode, permissions: ['MANAGE_MESSAGES'] } }).then((role) => {
       role.setMentionable(false);
       role.setHoist(false);
+
+      botRolePosition = msg.guild.members.resolve(client.user).roles.highest.position
+      userRolePosition = msg.member.roles.highest.position
+      rolePosition = Math.min(botRolePosition-1, userRolePosition)
+      console.log(`botRolePosition is: ${botRolePosition}, userRolePosition is: ${userRolePosition}, and rolePosition is: ${rolePosition}`)
+
       role.setPosition(rolePosition).then((data) => {
         //this line will eventually add the role to a collection of color roles
         msg.channel.send(`Color created`)
@@ -48,13 +59,13 @@ module.exports = {
           msg.member.roles.remove(removeRole).then((member) => {
             member.roles.add(role)
             //console.log(`Role: ${removeRole.name} to remove members: ${removeRole.members.size}`)
-            //if(removeRole.members.size === 1){
-            //  console.log(`user is: ${removeRole.members.first.user}, bool should be ${removeRole.members.first.user == undefined}`)
-            //}
+            if(removeRole.members.size === 1){
+              console.log(`user is: ${removeRole.members.first.user}, bool should be ${removeRole.members.first.user == undefined}`)
+            }
             //removes role if no one is using it
             if(removeRole.members.size < 1 || (removeRole.members.size === 1 && removeRole.members.first.user === undefined)){
-              //console.log(`role with name: ${removeRole.name} was deleted`)
-              removeRole.delete()
+              console.log(`role with name: ${removeRole.name} was deleted`)
+              removeRole.delete().then(role.setPosition(rolePosition))
             }
           })
         }else{
