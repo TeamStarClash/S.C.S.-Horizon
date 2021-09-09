@@ -6,7 +6,7 @@ const client = new Discord.Client()
 client.commands = new Discord.Collection()
 client.slashCommands = new Discord.Collection()
 
-const config = require('./config.json');
+const config = {prefix: "!"};
 
 //set up command files to be used
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
