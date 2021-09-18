@@ -10,7 +10,7 @@ module.exports = {
         name:'doughnut.gif'
       }]
     }).then((message) =>{
-      message.delete({timeout: 5000})
+      setTimeout(() => {message.delete()}, 5000)
     })
   }
 

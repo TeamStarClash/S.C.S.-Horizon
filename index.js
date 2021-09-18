@@ -1,8 +1,14 @@
-//test
 const fs = require('fs')
-const request = require('request')
+//const request = require('request')
 const Discord = require("discord.js")
-const client = new Discord.Client()
+const client = new Discord.Client({
+  intents:[
+    Discord.Intents.FLAGS.GUILDS,
+    Discord.Intents.FLAGS.GUILD_MESSAGES,
+    Discord.Intents.FLAGS.GUILD_MEMBERS
+  ]
+  //CHANGE THIS LATER
+})
 client.commands = new Discord.Collection()
 client.slashCommands = new Discord.Collection()
 
@@ -68,7 +74,7 @@ client.ws.on('INTERACTION_CREATE', async interaction => {
     reply(interaction, client.slashCommands.get('ping').execute())
   }
   else if(command === 'help'){
-    reply(interaction, client.slashCommands.get('help').execute(client.commands.array()))
+    reply(interaction, client.slashCommands.get('help').execute(client.commands))
   }
   else if(command === 'test'){
     reply(interaction, client.slashCommands.get('test').execute(interaction, client))
@@ -119,7 +125,7 @@ client.on("guildMemberAdd", (member) => {
 })
 
 //recieves commands through chat
-client.on('message', msg => {
+client.on('messageCreate', msg => {
 
   //prevents bot from speaking to itself
   if(msg.author.bot)
@@ -153,7 +159,7 @@ client.on('message', msg => {
   
   //sends list of commands
   else if (['help', 'helpme', 'commands', 'command'].includes(command)){
-    client.commands.get('help').execute(msg, client.commands.array())
+    client.commands.get('help').execute(msg, client.commands)
   }
 
   //doughnuts
@@ -169,7 +175,7 @@ client.on('message', msg => {
   
   //add a soundbite
   else if(command === 'addaudio'){
-    client.commands.get('addaudio').execute(msg, args, fs, request)
+   // client.commands.get('addaudio').execute(msg, args, fs, request)
   }
 
   //see all available audio files to play

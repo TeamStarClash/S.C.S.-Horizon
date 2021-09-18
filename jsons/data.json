@@ -1,6 +1,6 @@
 {
   "testSaveArea": {
-    "var1": 3
+    "var1": 4
   },
   "colorRoles": {
     "#000000": {
@@ -34,7 +34,7 @@
       "kicked": 0,
       "kicks": 0,
       "conversationsStarted": 0,
-      "donutCounter": 10
+      "donutCounter": 14
     },
     "790710595225255956": {
       "name": "Runkle αβ",
